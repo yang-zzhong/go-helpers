@@ -24,6 +24,27 @@ func TestSliceEqual(t *T) {
 	}
 }
 
+func TestToHumpCase(t *T) {
+	src := "hello_world"
+	result := "helloWorld"
+	if toHumpCase(src) != result {
+		t.Error("tohumpcase fail")
+	}
+}
+
+func TestToUnderline(t *T) {
+	src := "helloWorld"
+	result := "hello_world"
+	if toUnderline(src) != result {
+		t.Error("tounderline fail")
+	}
+	src = "HHH"
+	result = "_h_h_h"
+	if toUnderline(src) != result {
+		t.Error("tounderline fail")
+	}
+}
+
 func TestExplode(t *T) {
 	src := "hello world"
 	result := []string{"hello", "world"}

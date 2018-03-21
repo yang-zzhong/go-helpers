@@ -3,6 +3,7 @@ package helpers
 import (
 	"bytes"
 	"math/rand"
+	"regexp"
 )
 
 func Implode(slices []string, sep string) string {
@@ -61,6 +62,24 @@ func RandNumberString(length int) string {
 func RandLetterString(length int) string {
 	template := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	return RandTemplateString(template, length)
+}
+
+func toHumpCase(src string) string {
+	under := regexp.MustCompile("_\\w")
+	result := under.ReplaceAllFunc([]byte(src), func(matched []byte) []byte {
+		return bytes.ToUpper(matched[1:2])
+	})
+
+	return string(result)
+}
+
+func toUnderline(src string) string {
+	hump := regexp.MustCompile("[A-Z]")
+	result := hump.ReplaceAllFunc([]byte(src), func(matched []byte) []byte {
+		return []byte("_" + string(bytes.ToLower(matched)))
+	})
+
+	return string(result)
 }
 
 func RandTemplateString(template string, length int) string {
