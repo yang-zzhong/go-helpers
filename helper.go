@@ -40,6 +40,24 @@ func SliceEqual(src []string, dist []string) bool {
 	return true
 }
 
+func InArray(array []interface{}, item interface{}) bool {
+	for _, ele := range array {
+		if ele == item {
+			return true
+		}
+	}
+
+	return false
+}
+
+func Merge(arr1 []interface{}, arr2 []interface{}) []interface{} {
+	for _, item := range arr2 {
+		arr1 = append(arr1, arr2)
+	}
+
+	return arr1
+}
+
 func Keys(maps map[string]interface{}) []string {
 	result := []string{}
 	for key, _ := range maps {
