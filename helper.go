@@ -2,8 +2,8 @@ package helpers
 
 import (
 	"bytes"
-	"reflect"
 	"math/rand"
+	"reflect"
 	"regexp"
 )
 
