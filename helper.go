@@ -3,7 +3,6 @@ package helpers
 import (
 	"bytes"
 	"math/rand"
-	"reflect"
 	"regexp"
 )
 
