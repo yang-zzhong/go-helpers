@@ -2,7 +2,6 @@ package helpers
 
 import (
 	"bytes"
-	"reflect"
 	"math/rand"
 	"regexp"
 )
@@ -41,7 +40,7 @@ func SliceEqual(src []string, dist []string) bool {
 	return true
 }
 
-func InArray(array []interface{}, item interface{}) bool {
+func InStrArray(array []string, item string) bool {
 	for _, ele := range array {
 		if ele == item {
 			return true
@@ -51,9 +50,9 @@ func InArray(array []interface{}, item interface{}) bool {
 	return false
 }
 
-func Merge(arr1 []interface{}, arr2 []interface{}) []interface{} {
+func MergeStrArray(arr1 []string, arr2 []string) []string {
 	for _, item := range arr2 {
-		arr1 = append(arr1, arr2)
+		arr1 = append(arr1, item)
 	}
 
 	return arr1
@@ -63,27 +62,6 @@ func Keys(maps map[string]interface{}) []string {
 	result := []string{}
 	for key, _ := range maps {
 		result = append(result, key)
-	}
-
-	return result
-}
-
-func Fields(arr []interface{}, fieldName string) (result []interface{}, err error) {
-
-	for _, st := range arr {
-		ty := reflect.TypeOf(st)
-		if ty.Kind() != reflect.Struct {
-			result = []interface{}{}
-			err = errors.New("elements of slice not a struct")
-			return
-		}
-		field := ty.FieldByName(fieldName)
-		if !field.IsValid() {
-			result = []interface{}{}
-			err = errors.New("elements not available")
-			return
-		}
-		result = append(result, field.Addr().Interface())
 	}
 
 	return result
